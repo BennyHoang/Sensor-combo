@@ -62,7 +62,7 @@ Serial.println(celcius);
 Serial.println("=================================");
 
 char payload[255];
-snprintf(payload, sizeof(payload),"{\"CO-gass\": %d,\"temperature\": %f,\"humidity\": %f,\"light\": %d,\"motion\":%s}",COValue,celcius,humidity,lightValue, motion ? "true": "false");
+snprintf(payload, sizeof(payload),"{\"C\": %d,\"t\": %f,\"h\": %f,\"l\": %d,\"m\":%s}",COValue,celcius,humidity,lightValue, motion ? "true": "false");
 Particle.publish(payload);
 
 }
