@@ -4,6 +4,7 @@
 #include "application.h"
 
 #define PIR_PIN D0
+#define LED_PIN D7
 
 class PIRSensor{
 public:

@@ -9,7 +9,7 @@ PIRSensor::PIRSensor(){
 void PIRSensor::init(){
   Serial.begin(9600);
   pinMode(PIR_PIN, INPUT);
-  pinMode(D1, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);
 }
 
 bool PIRSensor::calibrated(){
@@ -26,13 +26,13 @@ void PIRSensor::outputMotion(){
       //Particle.publish("designingiot/s15/motion");
       Serial.println("Motion detected");
       _state = HIGH;
-      digitalWrite(D1, HIGH);
+      digitalWrite(LED_PIN, HIGH);
     }
   }else{
     if(_state == HIGH){
       Serial.println("motion ended");
       _state = LOW;
-      digitalWrite(D1, LOW);
+      digitalWrite(LED_PIN, LOW);
     }
   }
 }

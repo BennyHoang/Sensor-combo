@@ -1,0 +1,19 @@
+#ifndef DHT11_SENSOR_H
+#define DHT11_SENSOR_H DHT11_SENSOR_H
+#include "application.h"
+#include "Adafruit_DHT.h"
+
+#define DHT11_PIN D2
+#define DHTTYPE DHT11
+
+class DHT11Sensor{
+public:
+  DHT11Sensor();
+  void init();
+  float getCelsius();
+  float getFarenheit();
+  float getHumidity();
+};
+
+
+#endif
