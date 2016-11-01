@@ -1,0 +1,21 @@
+{
+  "event": "PublishSensorData",
+  "url": "https://pptlbh.servicebus.windows.net/pptlbhhub/messages",
+  "requestType": "POST",
+  "json":{
+    "CO-gass": "{{CO}}",
+    "temperature": "{{temp}}",
+    "humidity": "{{humidity}}",
+    "light": "{{light}}",
+    "motion": "{{motion}}",
+    "timecreated": "{{SPARK_PUBLISHED_AT}}",
+    "guid": "{{SPARK_CORE_ID}}"
+  },
+
+  "azure_sas_token": {
+    "key_name": "ParticleWebHook",
+    "key": "krJ8v55gH7+wofdiEIDu978Ic9rv8qf2Q022n2oJnDI="
+  },
+
+  "mydevices": true
+}

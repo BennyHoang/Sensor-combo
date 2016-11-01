@@ -4,6 +4,7 @@ PIRSensor::PIRSensor(){
   _calibrationTime = 10000;
   _val = 0;
   _state = LOW;
+  _motion = false;
 }
 
 void PIRSensor::init(){
@@ -27,12 +28,24 @@ void PIRSensor::outputMotion(){
       Serial.println("Motion detected");
       _state = HIGH;
       digitalWrite(LED_PIN, HIGH);
+      _motion = true;
+      setMotionStatus(_motion);
     }
   }else{
     if(_state == HIGH){
       Serial.println("motion ended");
       _state = LOW;
       digitalWrite(LED_PIN, LOW);
+      _motion = false;
+      setMotionStatus(_motion);
     }
   }
+}
+
+void PIRSensor::setMotionStatus(bool motion){
+  _motion = motion;
+}
+
+bool PIRSensor::getMotionStatus(){
+  return _motion;
 }

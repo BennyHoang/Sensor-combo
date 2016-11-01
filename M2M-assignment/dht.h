@@ -10,7 +10,7 @@ class DHT11Sensor{
 public:
   DHT11Sensor();
   void init();
-  float getCelsius();
+  float getCelcius();
   float getFarenheit();
   float getHumidity();
 };

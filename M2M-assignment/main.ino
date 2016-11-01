@@ -18,31 +18,51 @@ void setup() {
 }
 
 void loop() {
+
+generatePayload();
+delay(1000);
+}
+
+void generatePayload(){
+  //INITIALIZING SENSOR VALUES
+  int lightValue = LIGHT.getSensorValue();
+  int COValue = MQ7.getSensorValue();
+  float humidity = DHT_11.getHumidity();
+  float celcius = DHT_11.getCelcius();
+  bool motion;
+
   Serial.print("light value= ");
-  Serial.println(LIGHT.getSensorValue());
+  Serial.println(lightValue);
   Serial.println("=================================");
   //  OUTPUT for CO
   Serial.print("CO = ");
-  Serial.println(MQ7.getSensorValue());
+  Serial.println(COValue);
   Serial.println("=================================");
 
 // OUTPUT for Motion
   if(PIR.calibrated())
   {
-
     Serial.println("Calibrated");
     PIR.readSensorValue();
     PIR.outputMotion();
     Serial.println("=================================");
+    motion = PIR.getMotionStatus();
+    Serial.println(motion);
+
   }else{
     Serial.println("Calibrating...");
     Serial.println("=================================");
   }
 
-
 Serial.print("Humidity: ");
-Serial.println(DHT_11.getCelsius());
+Serial.println(humidity);
+Serial.println("=================================");
+Serial.print("Celcius: ");
+Serial.println(celcius);
 Serial.println("=================================");
 
-delay(1000);
+char payload[255];
+snprintf(payload, sizeof(payload),"{\"CO-gass\": %d,\"temperature\": %f,\"humidity\": %f,\"light\": %d,\"motion\":%s}",COValue,celcius,humidity,lightValue, motion ? "true": "false");
+Particle.publish(payload);
+
 }

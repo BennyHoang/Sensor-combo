@@ -9,7 +9,7 @@ void DHT11Sensor::init(){
   dht.begin();
 }
 
-float DHT11Sensor::getCelsius(){
+float DHT11Sensor::getCelcius(){
   float celcius = dht.getTempCelcius();
   return celcius;
 }

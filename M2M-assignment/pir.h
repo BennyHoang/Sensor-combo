@@ -13,10 +13,13 @@ public:
   bool calibrated();
   void readSensorValue();
   void outputMotion();
+  bool getMotionStatus();
+  void setMotionStatus(bool motion);
 private:
   int _calibrationTime;
   int _val;
   int _state;
+  bool _motion;
 };
 
 #endif
