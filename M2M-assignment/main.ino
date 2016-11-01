@@ -1,27 +1,25 @@
 #include "mq7.h"
 #include "pir.h"
 #include "dht.h"
+#include "light_sensor.h"
 
 MQ7Sensor MQ7;
 PIRSensor PIR;
 DHT11Sensor DHT_11;
-
-int light = A4;
-int lightValue = 0;
-
+LIGHTSensor LIGHT;
 
 unsigned long sendDelay = 10000;
 void setup() {
     Serial.begin(9600);
     PIR.init();
     DHT_11.init();
+    LIGHT.init();
     delay(10000);
 }
 
 void loop() {
-  lightValue = analogRead(light);
   Serial.print("light value= ");
-  Serial.println(lightValue);
+  Serial.println(LIGHT.getSensorValue());
   Serial.println("=================================");
   //  OUTPUT for CO
   Serial.print("CO = ");
