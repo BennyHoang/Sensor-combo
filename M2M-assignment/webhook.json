@@ -1,6 +1,6 @@
 {
   "event": "PublishSensorData",
-  "url": "https://pptlbh.servicebus.windows.net/pptlbhhub/messages",
+  "url": "https://sensorhub-ns.servicebus.windows.net/sensorhub/messages",
   "requestType": "POST",
   "json":{
     "CO-gass": "{{CO}}",
@@ -13,8 +13,8 @@
   },
 
   "azure_sas_token": {
-    "key_name": "ParticleWebHook",
-    "key": "krJ8v55gH7+wofdiEIDu978Ic9rv8qf2Q022n2oJnDI="
+    "key_name": "PublishToEventHub",
+    "key": "ex56fIHKgCkQFGyN00XfLvMlsmfFHR7OfKddfkhxnyU="
   },
 
   "mydevices": true

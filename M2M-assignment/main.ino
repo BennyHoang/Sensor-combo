@@ -20,7 +20,7 @@ void setup() {
 void loop() {
 
 generatePayload();
-delay(1000);
+delay(sendDelay);
 }
 
 void generatePayload(){
@@ -63,6 +63,6 @@ Serial.println("=================================");
 
 char payload[255];
 snprintf(payload, sizeof(payload),"{\"C\": %d,\"t\": %f,\"h\": %f,\"l\": %d,\"m\":%s}",COValue,celcius,humidity,lightValue, motion ? "true": "false");
-Particle.publish(payload);
+Particle.publish("PublishSensorData",payload);
 
 }
