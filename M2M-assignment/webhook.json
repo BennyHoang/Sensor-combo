@@ -3,11 +3,11 @@
   "url": "https://sensorhub-ns.servicebus.windows.net/sensorhub/messages",
   "requestType": "POST",
   "json":{
-    "CO-gass": "{{CO}}",
-    "temperature": "{{temp}}",
-    "humidity": "{{humidity}}",
-    "light": "{{light}}",
-    "motion": "{{motion}}",
+    "CO": "{{C}}",
+    "temperature": "{{t}}",
+    "humidity": "{{h}}",
+    "light": "{{l}}",
+    "motion": "{{m}}",
     "timecreated": "{{SPARK_PUBLISHED_AT}}",
     "guid": "{{SPARK_CORE_ID}}"
   },

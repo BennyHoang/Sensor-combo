@@ -8,6 +8,7 @@ PIRSensor PIR;
 DHT11Sensor DHT_11;
 LIGHTSensor LIGHT;
 
+//unsigned long sendDelay = 2*60*1000;
 unsigned long sendDelay = 10000;
 void setup() {
     Serial.begin(9600);
