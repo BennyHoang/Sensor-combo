@@ -20,12 +20,15 @@ I tillegg til en radio, skal man ha med følgende sensorer i noden:
 - Photoresistor
 - PIR sensor
 - MH-Z19 CO2 sensor (ikke MQ7 som er en CO-sensor!)
+
 Sensor-nodene skal rapportere og lagre dataene på en valgfri skytjeneste. Det skal lages en klient som bør fungere på enten mobil eller stasjonær PC. Her skal man
 kunne lese av status for mer enn ett rom og det bør også være mulig å kunne se historiske data. Klienten bør minimum ha en grafisk fremstilling av dataene over tid.
+
 Det må lages en trinnvis dokumentasjon for hvordan man setter opp både klient og server. Denne skal være enkel å følge for en som ikke har samme erfarings-grunnlag
 som vi har bygget opp i løpet av skoleåret. Den dere skriver dokumentasjonen for er altså en som ikke har brukt Photon eller LoRa Feather noe særlig før. Alle valg av
-tjenester må begrunnes og det må dokumenteres hvordan løsningen skal kunne skaleres til å dekke både Fjerdingen og Vulkan Campus. Utover selve oppgaven skal det
-leveres dokumentasjon og kode som beskriver:
+tjenester må begrunnes og det må dokumenteres hvordan løsningen skal kunne skaleres til å dekke både Fjerdingen og Vulkan Campus. 
+
+Utover selve oppgaven skal det leveres dokumentasjon og kode som beskriver:
 - Sensornode m/nødvendige biblioteker
 - Skytjeneste
 - Klient
