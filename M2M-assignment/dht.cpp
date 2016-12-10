@@ -11,6 +11,9 @@ void DHT11Sensor::init(){
 
 float DHT11Sensor::getCelcius(){
   float celcius = dht.getTempCelcius();
+  if(isnan(celcius)){
+    celcius = 0.0;
+  }
   return celcius;
 }
 
@@ -21,5 +24,8 @@ float DHT11Sensor::getFarenheit(){
 
 float DHT11Sensor::getHumidity(){
   float humidity = dht.getHumidity();
+  if(isnan(humidity)){
+    humidity = 0.0;
+  }
   return humidity;
 }

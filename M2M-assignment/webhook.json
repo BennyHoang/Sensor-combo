@@ -3,7 +3,7 @@
   "url": "https://sensorhub-ns.servicebus.windows.net/sensorhub/messages",
   "requestType": "POST",
   "json":{
-    "CO": "{{C}}",
+    "carbondioxide": "{{C2}}",
     "temperature": "{{t}}",
     "humidity": "{{h}}",
     "light": "{{l}}",

@@ -1,21 +1,27 @@
 #include "mq7.h"
+#include "mhz19.h"
 #include "pir.h"
 #include "dht.h"
 #include "light_sensor.h"
 
 MQ7Sensor MQ7;
+MHZ19Sensor MHZ19;
 PIRSensor PIR;
 DHT11Sensor DHT_11;
 LIGHTSensor LIGHT;
 
+
 //unsigned long sendDelay = 2*60*1000;
-unsigned long sendDelay = 10000;
+unsigned long sendDelay = 30000;
 void setup() {
     Serial.begin(9600);
+    MQ7.init();
+    MHZ19.init();
     PIR.init();
     DHT_11.init();
     LIGHT.init();
     delay(10000);
+    Serial.print("Preheating");
 }
 
 void loop() {
@@ -27,7 +33,8 @@ delay(sendDelay);
 void generatePayload(){
   //INITIALIZING SENSOR VALUES
   int lightValue = LIGHT.getSensorValue();
-  int COValue = MQ7.getSensorValue();
+  int CO = MQ7.getSensorValue();
+  int CO2 = MHZ19.getSensorValue();
   float humidity = DHT_11.getHumidity();
   float celcius = DHT_11.getCelcius();
   bool motion;
@@ -37,7 +44,11 @@ void generatePayload(){
   Serial.println("=================================");
   //  OUTPUT for CO
   Serial.print("CO = ");
-  Serial.println(COValue);
+  Serial.println(CO);
+  Serial.println("=================================");
+  // OUTPUT for CO2
+  Serial.print("CO2 = ");
+  Serial.println(CO2);
   Serial.println("=================================");
 
 // OUTPUT for Motion
@@ -63,7 +74,7 @@ Serial.println(celcius);
 Serial.println("=================================");
 
 char payload[255];
-snprintf(payload, sizeof(payload),"{\"C\": %d,\"t\": %f,\"h\": %f,\"l\": %d,\"m\":%s}",COValue,celcius,humidity,lightValue, motion ? "true": "false");
+snprintf(payload, sizeof(payload),"{\"C2\": %ld, \"t\": %f,\"h\": %f,\"l\": %d,\"m\":%s}",CO2,celcius,humidity,lightValue, motion ? "true": "false");
 Particle.publish("PublishSensorData",payload);
 
 }
