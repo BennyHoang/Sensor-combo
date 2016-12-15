@@ -10,9 +10,10 @@ PIRSensor PIR;
 DHT11Sensor DHT_11;
 LIGHTSensor LIGHT;
 
-
+//Delay for production:
 //unsigned long sendDelay = 2*60*1000;
-unsigned long sendDelay = 30000;
+//Delay for debugging:
+unsigned long sendDelay = 3000;
 void setup() {
     Serial.begin(9600);
     MQ7.init();
@@ -20,7 +21,7 @@ void setup() {
     PIR.init();
     DHT_11.init();
     LIGHT.init();
-    delay(10000);
+    delay(1000);
     Serial.print("Preheating");
 }
 
@@ -75,6 +76,9 @@ Serial.println("=================================");
 
 char payload[255];
 snprintf(payload, sizeof(payload),"{\"C2\": %ld, \"t\": %f,\"h\": %f,\"l\": %d,\"m\":%s}",CO2,celcius,humidity,lightValue, motion ? "true": "false");
-Particle.publish("PublishSensorData",payload);
+//Publishes to eventhub
+//Particle.publish("PublishSensorData",payload);
+//Publishes to iotHub
+Particle.publish("sensor-hub",payload,PRIVATE);
 
 }

@@ -13,6 +13,8 @@ public:
   float getCelcius();
   float getFarenheit();
   float getHumidity();
+private:
+  int number_of_readings;
 };
 
 
