@@ -23,7 +23,7 @@ namespace SensorApi.Models
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="StreamAnalyticsOutput")]
-	public partial class SensorOrmDataContext : System.Data.Linq.DataContext
+	public partial class SensorORMDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -35,31 +35,31 @@ namespace SensorApi.Models
     partial void DeletesensorDataTable(sensorDataTable instance);
     #endregion
 		
-		public SensorOrmDataContext() : 
+		public SensorORMDataContext() : 
 				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["StreamAnalyticsOutputConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public SensorOrmDataContext(string connection) : 
+		public SensorORMDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public SensorOrmDataContext(System.Data.IDbConnection connection) : 
+		public SensorORMDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public SensorOrmDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public SensorORMDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public SensorOrmDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public SensorORMDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -243,7 +243,7 @@ namespace SensorApi.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_guid", DbType="NVarChar(MAX)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_guid", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string guid
 		{
 			get

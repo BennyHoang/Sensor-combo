@@ -10,7 +10,7 @@ void DHT11Sensor::init(){
 }
 
 float DHT11Sensor::getCelcius(){
-  float celcius = 0;
+  float celcius = 0.0;
   for(int i = 0; i < number_of_readings; i++){
     celcius += dht.getTempCelcius();
   }

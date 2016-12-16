@@ -10,15 +10,32 @@ namespace SensorApi.Controllers
 {
     public class SensorController : ApiController
     {
-        public IEnumerable<sensorDataTable> GetSensorDatas()
+        public HttpResponseMessage GetAllSensorData()
         {
-            using (SensorOrmDataContext sensorOrm = new SensorOrmDataContext())
+
+            using (SensorORMDataContext sensorOrm = new SensorORMDataContext())
+            {
+                List<sensorDataTable> sensorList = (from sensorDataTable in sensorOrm.sensorDataTables
+                                                    select sensorDataTable).ToList();
+
+
+
+
+                return Request.CreateResponse(HttpStatusCode.OK, sensorList, Configuration.Formatters.JsonFormatter);
+            }
+        }
+        public HttpResponseMessage GetLatestSensorData()
+        {
+            using (SensorORMDataContext sensorOrm = new SensorORMDataContext())
             {
                 List<sensorDataTable> sensorList = (from sensorDataTable in sensorOrm.sensorDataTables
                                                select sensorDataTable).ToList();
+                
                 var count = sensorList.Count;
 
-                return sensorList.Skip(count - 10);
+               
+                
+                return Request.CreateResponse(HttpStatusCode.OK, sensorList.Skip(count - 10), Configuration.Formatters.JsonFormatter);
             }   
         }
     }

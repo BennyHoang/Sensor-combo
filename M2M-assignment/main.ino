@@ -11,9 +11,9 @@ DHT11Sensor DHT_11;
 LIGHTSensor LIGHT;
 
 //Delay for production:
-//unsigned long sendDelay = 2*60*1000;
+unsigned long sendDelay = 2*60*1000;
 //Delay for debugging:
-unsigned long sendDelay = 3000;
+//unsigned long sendDelay = 3000;
 void setup() {
     Serial.begin(9600);
     MQ7.init();

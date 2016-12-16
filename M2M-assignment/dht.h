@@ -14,7 +14,7 @@ public:
   float getFarenheit();
   float getHumidity();
 private:
-  int number_of_readings;
+  float number_of_readings;
 };
 
 
