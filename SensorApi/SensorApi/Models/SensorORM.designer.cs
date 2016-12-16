@@ -96,6 +96,8 @@ namespace SensorApi.Models
 		
 		private System.Nullable<int> _carbondioxide;
 		
+		private string _location;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -116,6 +118,8 @@ namespace SensorApi.Models
     partial void OnguidChanged();
     partial void OncarbondioxideChanging(System.Nullable<int> value);
     partial void OncarbondioxideChanged();
+    partial void OnlocationChanging(string value);
+    partial void OnlocationChanged();
     #endregion
 		
 		public sensorDataTable()
@@ -279,6 +283,26 @@ namespace SensorApi.Models
 					this._carbondioxide = value;
 					this.SendPropertyChanged("carbondioxide");
 					this.OncarbondioxideChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_location", DbType="NVarChar(MAX)")]
+		public string location
+		{
+			get
+			{
+				return this._location;
+			}
+			set
+			{
+				if ((this._location != value))
+				{
+					this.OnlocationChanging(value);
+					this.SendPropertyChanging();
+					this._location = value;
+					this.SendPropertyChanged("location");
+					this.OnlocationChanged();
 				}
 			}
 		}

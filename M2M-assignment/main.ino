@@ -11,18 +11,21 @@ DHT11Sensor DHT_11;
 LIGHTSensor LIGHT;
 
 //Delay for production:
-unsigned long sendDelay = 2*60*1000;
+//unsigned long sendDelay = 2*60*1000;
+char location[64] = "room_23";
 //Delay for debugging:
-//unsigned long sendDelay = 3000;
+unsigned long sendDelay = 10000;
 void setup() {
+    Particle.function("setLoc", setLoc);
     Serial.begin(9600);
     MQ7.init();
     MHZ19.init();
     PIR.init();
     DHT_11.init();
     LIGHT.init();
-    delay(1000);
     Serial.print("Preheating");
+    delay(100000);
+
 }
 
 void loop() {
@@ -31,10 +34,15 @@ generatePayload();
 delay(sendDelay);
 }
 
+int setLoc(String command){
+  command.toCharArray(location,64);
+  return 0;
+}
+
+
 void generatePayload(){
   //INITIALIZING SENSOR VALUES
   int lightValue = LIGHT.getSensorValue();
-  int CO = MQ7.getSensorValue();
   int CO2 = MHZ19.getSensorValue();
   float humidity = DHT_11.getHumidity();
   float celcius = DHT_11.getCelcius();
@@ -42,10 +50,6 @@ void generatePayload(){
 
   Serial.print("light value= ");
   Serial.println(lightValue);
-  Serial.println("=================================");
-  //  OUTPUT for CO
-  Serial.print("CO = ");
-  Serial.println(CO);
   Serial.println("=================================");
   // OUTPUT for CO2
   Serial.print("CO2 = ");
@@ -55,7 +59,6 @@ void generatePayload(){
 // OUTPUT for Motion
   if(PIR.calibrated())
   {
-    Serial.println("Calibrated");
     PIR.readSensorValue();
     PIR.outputMotion();
     Serial.println("=================================");
@@ -75,7 +78,9 @@ Serial.println(celcius);
 Serial.println("=================================");
 
 char payload[255];
-snprintf(payload, sizeof(payload),"{\"C2\": %ld, \"t\": %f,\"h\": %f,\"l\": %d,\"m\":%s}",CO2,celcius,humidity,lightValue, motion ? "true": "false");
+snprintf(payload, sizeof(payload),"{\"C2\": %d, \"t\": %f,\"h\": %f,\"l\": %d,\"m\":%s, \"loc\":\"%s\"}",CO2,celcius,humidity,lightValue, motion ? "true": "false", location);
+
+//String message = String("{\"C2\" : \"" + (String)CO2 + "\", \"t\" : \"" + (String)celcius + "\", \"h\" : \"" + (String)humidity + "\", \"m\" : \"" + (String)motion + "\", \"l\" : \"" + (String)lightValue + "\", \"loc\" : \"" + (String)location + "\"}");
 //Publishes to eventhub
 //Particle.publish("PublishSensorData",payload);
 //Publishes to iotHub

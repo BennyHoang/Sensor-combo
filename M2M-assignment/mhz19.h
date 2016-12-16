@@ -11,8 +11,8 @@ public:
   void init();
   int getSensorValue();
 private:
-  int _prevVal;
-  int _th, _tl, _h, _l, _ppm;
+  int prevVal;
+  int th, tl, h, l, ppm;
 };
 
 #endif

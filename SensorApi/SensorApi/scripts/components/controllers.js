@@ -2,54 +2,82 @@
 
 appControllers.controller("MainController", ["$http", function ($http) {
     var _this = this;
-    _this.data;
+    _this.location = "";
+
+    var lightData = [];
+    var timeData = [];
+    var temperatureData = [];
+    var humidityData = [];
+    var movementData = [];
+    var co2Data = [];
+
+    _this.assignNewLocation = function() {
+        var url = "https://api.particle.io/v1/devices/1e0041000c47343432313031/setLoc?access_token=d7c0d4dead06c0bc6f45e03ea5f9000f24ccda9b";
+        $http
+            .post(
+                url,
+                FormData,
+                {
+                    withCredentials: false,
+                    headers: {
+                        "Content-Type": undefined
+                    },
+                    transformRequest: angular.identity
+                }
+            )
+            .then(
+                function(response) {
+                    console.log("POSTED");
+                },
+                function(response) {
+                    console.log("FAIL");
+                }
+            )
+        ;
+    }
+
     _this.getSensorData = function () {
 
         var url = "api/sensor/getlatestsensordata";
         $http
             .get(url)
             .then(
-                function (response) {
-                    
-                        _this.data = response.data;
-                        var lightData = [];
-                        var timeData = [];
-                        var temperatureData = [];
-                        var humidityData = [];
-                        var movementData = [];
-                        for (var i = 0; i < _this.data.length; i++) {
+                function(response) {
 
-                            var d = new Date(_this.data[i].timecreated);
-                            var hours = d.getHours();
-                            var minutes = d.getMinutes();
-                            var seconds = d.getSeconds();
+                    _this.data = response.data;
 
-                            lightData.push(_this.data[i].light);
-                            temperatureData.push(_this.data[i].temperature);
-                            humidityData.push(_this.data[i].humidity);
+                    for (var i = 0; i < _this.data.length; i++) {
+                        var date = _this.data[i].timecreated;
+                        $.format.toBrowserTimeZone(date);
+                        var dateFormat = $.format.date(date, "dd.MMM HH:mm");
+                        _this.location = _this.data[i].location;
+                        lightData.push(_this.data[i].light);
+                        temperatureData.push(_this.data[i].temperature);
+                        humidityData.push(_this.data[i].humidity);
 
-                            if (_this.data[i].motion === "true") {
-                                movementData.push("1");
-                            } else {
-                                movementData.push("0");
-                            }
-
-                            timeData.push(hours + ":" + minutes + ":" + seconds);
-                            console.log(hours + ":" + minutes + ":" + seconds);
-                            console.log(movementData[i]);
+                        if (_this.data[i].motion === "true") {
+                            movementData.push("1");
+                        } else {
+                            movementData.push("0");
                         }
-                        lightSensorChart(lightData, timeData);
-                        dhtChart(temperatureData, humidityData, timeData);
-                        
-                        pirChart(movementData, timeData);
-                    
+                        console.log("formating date: " + date);
+                        timeData.push(dateFormat);
+                        co2Data.push(_this.data[i].carbondioxide);
+                    }
+
+
+                    lightSensorChart(lightData, timeData);
+                    dhtChart(temperatureData, humidityData, timeData);
+                    pirChart(movementData, timeData);
+                    coChart(co2Data, timeData);
+
 
                 },
-                function (response) {
+                function(response) {
                     console.log("FAIL");
                 }
-            )
-     
+            );
+
     }();
 }]);//End of AppController
 
@@ -79,6 +107,34 @@ var pirChart = function (movement, time) {
         }
     });
 }
+
+var coChart = function (co2Data, time) {
+    var ctx = $("#coChart");
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: time,
+            datasets: [
+                {
+                    label: "CO2",
+                    data: co2Data,
+                    borderColor: 'rgba(255,99,132,1)'
+                }
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [
+                {
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        }
+    });
+}
+
 
 var dhtChart = function (temperatureData, humidityData, time) {
     var ctx = $("#dhtChart");

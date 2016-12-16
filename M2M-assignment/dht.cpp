@@ -2,7 +2,7 @@
 DHT dht(DHT11_PIN, DHT11);
 
 DHT11Sensor::DHT11Sensor(){
-  number_of_readings = 10;
+  number_of_readings = 20;
 }
 
 void DHT11Sensor::init(){
@@ -12,7 +12,12 @@ void DHT11Sensor::init(){
 float DHT11Sensor::getCelcius(){
   float celcius = 0.0;
   for(int i = 0; i < number_of_readings; i++){
-    celcius += dht.getTempCelcius();
+
+    if(isnan(celcius)){
+      celcius = 0.0;
+    }else{
+      celcius += dht.getTempCelcius();
+    }
   }
   return celcius/number_of_readings;
 }
@@ -26,9 +31,13 @@ float DHT11Sensor::getFarenheit(){
 }
 
 float DHT11Sensor::getHumidity(){
-  float humidity = 0;
+  float humidity = 0.0;
   for(int i = 0; i < number_of_readings; i++){
-    humidity += dht.getHumidity();
+    if(isnan(humidity)){
+      humidity = 0.0;
+    }else{
+      humidity += dht.getHumidity();
+    }
   }
   return humidity/number_of_readings;
 }

@@ -2,10 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="SensorORM">
   <DataContextMoniker Name="/SensorORMDataContext" />
   <nestedChildShapes>
-    <classShape Id="f9f48f82-4158-4343-a0fb-cb098b4e408e" absoluteBounds="1.125, 2, 2, 2.3478011067708335">
+    <classShape Id="7f3572dc-5084-4aca-b3c4-54fc7b8b8b6b" absoluteBounds="1.375, 1.125, 2, 2.5401025390625">
       <DataClassMoniker Name="/SensorORMDataContext/sensorDataTable" />
       <nestedChildShapes>
-        <elementListCompartment Id="591b86b0-1f04-448a-b783-8411530c4149" absoluteBounds="1.1400000000000001, 2.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="fc5e2ee6-78c2-4e8f-891f-a8464f2a903b" absoluteBounds="1.3899999999999997, 1.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
