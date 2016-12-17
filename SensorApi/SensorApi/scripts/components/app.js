@@ -6,12 +6,16 @@
 app.config(["$routeProvider", function($routeProvider) {
     $routeProvider.
         when("/main", {
-            templateUrl: "partials/main.html",
-            controller: "MainController"
+            templateUrl: "partials/main.html"
+        })
+        .when("/addRoom", {
+            templateUrl: "partials/addRoom.html"
         })
         .when("/sensorData", {
-            templateUrl: "partials/sensorData.html",
-            controller: "SensorController"
+            templateUrl: "partials/sensorData.html"
+        })
+        .when("/roomData/:id", {
+            templateUrl:"partials/roomData.html"
         })
         .otherwise({
             redirectTo:"/main"

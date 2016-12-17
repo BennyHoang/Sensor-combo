@@ -9,7 +9,6 @@ MHZ19Sensor MHZ19;
 PIRSensor PIR;
 DHT11Sensor DHT_11;
 LIGHTSensor LIGHT;
-
 //Delay for production:
 //unsigned long sendDelay = 2*60*1000;
 char location[64] = "room_23";
@@ -24,7 +23,7 @@ void setup() {
     DHT_11.init();
     LIGHT.init();
     Serial.print("Preheating");
-    delay(100000);
+    delay(10000);
 
 }
 

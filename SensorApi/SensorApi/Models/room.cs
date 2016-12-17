@@ -8,7 +8,7 @@ namespace SensorApi.Models
 {
     public class Room
     {
-        public int Id { get; set; }
+        public String Id { get; set; }
         public String Device { get; set; }
         public String Floor { get; set; }
         public String Description { get; set; }

@@ -119,7 +119,9 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="lib\angular\angular-route.min.js" />
+    <Content Include="partials\addRoom.html" />
     <Content Include="partials\main.html" />
+    <Content Include="partials\roomData.html" />
     <Content Include="partials\sensorData.html" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />

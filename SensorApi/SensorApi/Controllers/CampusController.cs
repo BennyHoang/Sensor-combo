@@ -31,11 +31,11 @@ namespace SensorApi.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, _room);
         }
 
-        public HttpResponseMessage DeleteRoom(int id)
+        public HttpResponseMessage DeleteRoom(String id)
         {
             XElement roomXML = XElement.Load(GetFilePath());
             var selectRoom = (from room in roomXML.Descendants("room")
-                              where (int)room.Element("id") == id
+                              where (String)room.Element("id") == id
                               select room).SingleOrDefault();
             selectRoom.Remove();
             roomXML.Save(GetFilePath());
@@ -47,7 +47,7 @@ namespace SensorApi.Controllers
             XElement roomXML = XElement.Load(GetFilePath());
 
             var selectRoom = (from room in roomXML.Descendants("room")
-                              where (int)room.Element("id") == _room.Id
+                              where (String)room.Element("id") == _room.Id
                               select room).SingleOrDefault();
             selectRoom.SetElementValue("device", _room.Device);
             selectRoom.SetElementValue("description", _room.Description);

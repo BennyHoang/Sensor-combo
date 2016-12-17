@@ -1,6 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <rooms>
   <room>
-    
+    <id>20</id>
+    <device>1e0041000c47343432313031</device>
+    <floor>2</floor>
+    <description>this is a room</description>
+    <datecreated>2016-12-17T18:42:11.4758449+01:00</datecreated>
   </room>
 </rooms>

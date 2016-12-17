@@ -1,0 +1,25 @@
+﻿  <!--Post form-->
+<div class="container" ng-controller="AddRoomController as mainCtrl">
+
+
+    <div class="form-group">
+        <h2>add Room</h2>
+        <div class="form-group">
+            <label>Id</label>
+            <input type="text" class="form-control" ng-model="mainCtrl.id" />
+        </div>
+        <div class="form-group">
+            <label>Device</label>
+            <select class="form-control" ng-model="mainCtrl.device" ng-init="mainCtrl.device" ng-options="x for x in mainCtrl.listDevices" />
+        </div>
+        <div class="form-group">
+            <label>floor</label>
+            <input type="text" class="form-control" ng-model="mainCtrl.floor" />
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" ng-model="mainCtrl.description" />
+        </div>
+        <input class="btn btn-primary" value="Create Room" type="button" ng-click="mainCtrl.addRoom()" />
+    </div>
+</div>

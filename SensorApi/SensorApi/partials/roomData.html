@@ -1,0 +1,27 @@
+﻿<div class="container" ng-controller="RoomController as roomCtrl">
+    <section class="row">
+        <h2>Room ID: {{roomCtrl.id}}</h2>
+        <p>Last modified: <span ng-bind="roomCtrl.date | date:'MM/dd/yyyy HH:mm:ss'"></span></p>
+
+        <div class="form-group">
+            <label>ID</label>
+            <input type="text" class="form-control" ng-model="roomCtrl.id"/>
+        </div>
+        <div class="form-group">
+            <label>Device</label>
+            <input type="text" class="form-control" ng-model="roomCtrl.device"/>
+        </div>
+        <div class="form-group">
+            <label>Floor</label>
+            <input type="text" class="form-control" ng-model="roomCtrl.floor" />
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea rows="5" class="form-control" ng-model="roomCtrl.description"></textarea>
+        </div>
+        <input type="button" ng-click="roomCtrl.putRoom()" class="btn btn-primary" value="update" />
+        <input type="button" ng-click="roomCtrl.deleteRoom()" class="btn btn-danger" value="delete" />
+
+    </section>
+
+</div>
