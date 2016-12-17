@@ -1,6 +1,6 @@
 ﻿var appControllers = angular.module("appControllers", []);
 
-appControllers.controller("MainController", ["$http", function ($http) {
+appControllers.controller("SensorController", ["$http", function ($http) {
     var _this = this;
     _this.location = "";
     _this.downloadData = "";
@@ -11,32 +11,6 @@ appControllers.controller("MainController", ["$http", function ($http) {
     var humidityData = [];
     var movementData = [];
     var co2Data = [];
-
-    _this.assignNewLocation = function() {
-        var url = "https://api.particle.io/v1/devices/1e0041000c47343432313031/setLoc?access_token=d7c0d4dead06c0bc6f45e03ea5f9000f24ccda9b";
-        $http
-            .post(
-                url,
-                FormData,
-                {
-                    withCredentials: false,
-                    headers: {
-                        "Content-Type": undefined
-                    },
-                    transformRequest: angular.identity
-                }
-            )
-            .then(
-                function(response) {
-                    console.log("POSTED");
-
-                },
-                function(response) {
-                    console.log("FAIL");
-                }
-            )
-        ;
-    }
 
     _this.downloadData = function() {
 
@@ -49,8 +23,8 @@ appControllers.controller("MainController", ["$http", function ($http) {
                     _this.downloadData = data;
                     var a = document.createElement("a");
                     a.href = "data: " + _this.downloadData;
-                    a.download = 'data.json';
-                    a.innerHTML = 'download JSON';
+                    a.download = 'SensorData.json';
+                    a.innerHTML = 'SensorData.json';
 
                     var container = $("#downloadContainer");
                     container.append(a);
@@ -59,7 +33,8 @@ appControllers.controller("MainController", ["$http", function ($http) {
                     console.log("FAIL");
                 }
             );
-    }();
+
+    }
 
     _this.getSensorData = function () {
 
@@ -105,7 +80,14 @@ appControllers.controller("MainController", ["$http", function ($http) {
 
     }();
 }]);//End of AppController
+appControllers.controller("MainController", ["$http", function($http) {
 
+    }
+]);
+
+
+
+/* DRAW CHART */
 var pirChart = function (movement, time) {
     var ctx = $("#pirChart");
     var myChart = new Chart(ctx, {
@@ -159,7 +141,6 @@ var coChart = function (co2Data, time) {
         }
     });
 }
-
 
 var dhtChart = function (temperatureData, humidityData, time) {
     var ctx = $("#dhtChart");

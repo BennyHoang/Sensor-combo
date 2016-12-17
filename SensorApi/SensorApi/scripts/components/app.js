@@ -9,6 +9,10 @@ app.config(["$routeProvider", function($routeProvider) {
             templateUrl: "partials/main.html",
             controller: "MainController"
         })
+        .when("/sensorData", {
+            templateUrl: "partials/sensorData.html",
+            controller: "SensorController"
+        })
         .otherwise({
             redirectTo:"/main"
         });

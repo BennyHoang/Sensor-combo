@@ -1,27 +1,4 @@
 ﻿<div class="container" ng-controller="MainController as mainCtrl">
-    <form class="form-group" action="https://api.particle.io/v1/devices/1e0041000c47343432313031/setLoc?access_token=d7c0d4dead06c0bc6f45e03ea5f9000f24ccda9b" method="POST">
-        <input class="form-control" type="text" ng-model="mainCtrl.location" name="location"/>
-        <input class="btn btn-primary" type="submit" value="change room"/>
-    </form> 
-    
-    <div class="row">
-        <div class="col-sm-6">
-            <canvas id="lightChart"></canvas>
-        </div>
-        <div class="col-sm-6">
-            <canvas id="dhtChart"></canvas>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <canvas id="pirChart"></canvas>
-        </div>
-        <div class="col-sm-6">
-            <canvas id="coChart"></canvas>
-        </div>
-    </div>
-
-    <div class="col-xs-12" id="downloadContainer">
-        
-    </div>
+    <h2>main.html</h2>
+    <a ng-href="#/sensorData">sensor data</a>
 </div>

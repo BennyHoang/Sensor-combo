@@ -111,6 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\campusDB.xml" />
     <Content Include="css\chart.css" />
     <Content Include="css\main.css">
       <DependentUpon>main.scss</DependentUpon>
@@ -119,6 +120,7 @@
     <Content Include="index.html" />
     <Content Include="lib\angular\angular-route.min.js" />
     <Content Include="partials\main.html" />
+    <Content Include="partials\sensorData.html" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\components\app.js" />
@@ -128,10 +130,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CampusController.cs" />
     <Compile Include="Controllers\SensorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Room.cs" />
     <Compile Include="Models\SensorORM.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -159,9 +163,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

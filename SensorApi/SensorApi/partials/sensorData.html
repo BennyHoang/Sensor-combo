@@ -1,0 +1,31 @@
+﻿<div class="container" ng-controller="SensorController as sensorCtrl">
+    <form class="form-inline" action="https://api.particle.io/v1/devices/1e0041000c47343432313031/setLoc?access_token=d7c0d4dead06c0bc6f45e03ea5f9000f24ccda9b" method="POST">
+        <div class="input-group">
+            <input class="form-control" type="text" ng-model="sensorCtrl.location" name="location"/>
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Assign new room</button>
+            </span>
+        </div>
+    </form> 
+    
+    <div class="row">
+        <div class="col-sm-6">
+            <canvas id="lightChart"></canvas>
+        </div>
+        <div class="col-sm-6">
+            <canvas id="dhtChart"></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <canvas id="pirChart"></canvas>
+        </div>
+        <div class="col-sm-6">
+            <canvas id="coChart"></canvas>
+        </div>
+    </div>
+
+    <div class="col-xs-12" id="downloadContainer">
+        <input type="button" class="btn btn-primary btn-lg" value="Get all sensor data" ng-click="sensorCtrl.downloadData()"/>
+    </div>
+</div>
