@@ -221,50 +221,51 @@ appControllers.controller("RoomController", ["$http", "$routeParams", "$location
     _this.getSensorData = function () {
 
         var url = "api/sensor/getlatestsensordata";
-        $http
-            .get(url)
-            .then(
-                function (response) {
 
-                    var filter = $.grep(response.data, function (n, i) {
-                        return n.guid === _this.device;
-                    });
-                    filteredData.push(filter);
 
-                    _this.data = filter;
-                    console.log(_this.data);
+            $http
+                .get(url)
+                .then(
+                    function(response) {
 
-                    for (var i = 0; i < _this.data.length; i++) {
-                        var date = _this.data[i].timecreated;
-                        $.format.toBrowserTimeZone(date);
-                        var dateFormat = $.format.date(date, "dd.MMM HH:mm");
-                        _this.location = _this.data[i].location;
-                        lightData.push(_this.data[i].light);
-                        temperatureData.push(_this.data[i].temperature);
-                        humidityData.push(_this.data[i].humidity);
+                        var filter = $.grep(response.data, function(n, i) {
+                            return n.guid === _this.device;
+                        });
+                        filteredData.push(filter);
 
-                        if (_this.data[i].motion === "true") {
-                            movementData.push("1");
-                        } else {
-                            movementData.push("0");
+                        _this.data = filter;
+                        console.log(_this.data);
+
+                        for (var i = 0; i < _this.data.length; i++) {
+                            var date = _this.data[i].timecreated;
+                            $.format.toBrowserTimeZone(date);
+                            var dateFormat = $.format.date(date, "dd.MMM HH:mm");
+                            _this.location = _this.data[i].location;
+                            lightData.push(_this.data[i].light);
+                            temperatureData.push(_this.data[i].temperature);
+                            humidityData.push(_this.data[i].humidity);
+
+                            if (_this.data[i].motion === "true") {
+                                movementData.push("1");
+                            } else {
+                                movementData.push("0");
+                            }
+                            timeData.push(dateFormat);
+                            co2Data.push(_this.data[i].carbondioxide);
                         }
-                        timeData.push(dateFormat);
-                        co2Data.push(_this.data[i].carbondioxide);
+
+
+                        lightSensorChart(lightData, timeData);
+                        dhtChart(temperatureData, humidityData, timeData);
+                        pirChart(movementData, timeData);
+                        coChart(co2Data, timeData);
+
+
+                    },
+                    function(response) {
+                        console.log("FAIL");
                     }
-
-
-                    lightSensorChart(lightData, timeData);
-                    dhtChart(temperatureData, humidityData, timeData);
-                    pirChart(movementData, timeData);
-                    coChart(co2Data, timeData);
-
-
-                },
-                function (response) {
-                    console.log("FAIL");
-                }
-            );
-
+                );
     }();
 }]);
 
@@ -358,6 +359,7 @@ var dhtChart = function (temperatureData, humidityData, time) {
 }
 
 var lightSensorChart = function (lightData, time) {
+
     var ctx = $("#lightChart");
     var myChart = new Chart(ctx, {
         type: 'bar',
