@@ -3,6 +3,7 @@
 appControllers.controller("MainController", ["$http", function ($http) {
     var _this = this;
     _this.location = "";
+    _this.downloadData = "";
 
     var lightData = [];
     var timeData = [];
@@ -28,6 +29,7 @@ appControllers.controller("MainController", ["$http", function ($http) {
             .then(
                 function(response) {
                     console.log("POSTED");
+
                 },
                 function(response) {
                     console.log("FAIL");
@@ -35,6 +37,29 @@ appControllers.controller("MainController", ["$http", function ($http) {
             )
         ;
     }
+
+    _this.downloadData = function() {
+
+        var url = "api/sensor/getallsensordata";
+        $http
+            .get(url)
+            .then(
+                function(response) {
+                    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(response.data));
+                    _this.downloadData = data;
+                    var a = document.createElement("a");
+                    a.href = "data: " + _this.downloadData;
+                    a.download = 'data.json';
+                    a.innerHTML = 'download JSON';
+
+                    var container = $("#downloadContainer");
+                    container.append(a);
+                },
+                function(response) {
+                    console.log("FAIL");
+                }
+            );
+    }();
 
     _this.getSensorData = function () {
 
