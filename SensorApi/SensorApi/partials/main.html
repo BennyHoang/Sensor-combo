@@ -5,23 +5,26 @@
 
     <table class="table table-hover">
         <thead>
-            <tr>
-                <td>id</td>
-                <td>floor</td>
-                <td>device</td>
-            </tr>
+        <tr>
+            <td>id</td>
+            <td>room name</td>
+            <td>floor</td>
+            <td>device</td>
+            
+        </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in mainCtrl.data">
+        <tr ng-repeat="item in mainCtrl.data">
 
-                <td>{{item.room.id}}</td>
-                <td>{{item.room.floor}}</td>
-                <td>{{item.room.device}}</td>
-                <td>
-                    <a class="btn btn-primary" ng-href="#/roomData/{{item.room.id}}">inspect</a>
-                </td>
+            <td>{{item.room.id}}</td>
+            <td>{{item.room.name}}</td>
+            <td>{{item.room.floor}}</td>
+            <td>{{item.room.device}}</td>
+            <td>
+                <a class="btn btn-primary" ng-href="#/roomData/{{item.room.id}}">inspect</a>
+            </td>
 
-            </tr>
+        </tr>
         </tbody>
     </table>
 </div>

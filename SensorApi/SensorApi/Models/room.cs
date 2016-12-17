@@ -12,6 +12,6 @@ namespace SensorApi.Models
         public String Device { get; set; }
         public String Floor { get; set; }
         public String Description { get; set; }
-
+        public String Name { get; set; }
     }
 }

@@ -11,9 +11,6 @@ app.config(["$routeProvider", function($routeProvider) {
         .when("/addRoom", {
             templateUrl: "partials/addRoom.html"
         })
-        .when("/sensorData", {
-            templateUrl: "partials/sensorData.html"
-        })
         .when("/roomData/:id", {
             templateUrl:"partials/roomData.html"
         })

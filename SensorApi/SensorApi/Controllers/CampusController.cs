@@ -20,6 +20,7 @@ namespace SensorApi.Controllers
             roomXML.Add(
                     new XElement("room",
                         new XElement("id", _room.Id),
+                        new XElement("room_name", _room.Name),
                         new XElement("device", _room.Device),
                         new XElement("floor", _room.Floor),
                         new XElement("description", _room.Description),
@@ -49,6 +50,7 @@ namespace SensorApi.Controllers
             var selectRoom = (from room in roomXML.Descendants("room")
                               where (String)room.Element("id") == _room.Id
                               select room).SingleOrDefault();
+            selectRoom.SetElementValue("name", _room.Name);
             selectRoom.SetElementValue("device", _room.Device);
             selectRoom.SetElementValue("description", _room.Description);
             selectRoom.SetElementValue("floor", _room.Floor);
