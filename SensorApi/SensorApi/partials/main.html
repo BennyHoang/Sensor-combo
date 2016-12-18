@@ -1,7 +1,6 @@
 ﻿<div class="container" ng-controller="MainController as mainCtrl">
-    <h2>main.html</h2>
-    <a ng-href="#/sensorData">sensor data</a>
-    <a ng-href="#/addRoom">add room</a>
+    <h2>List over all rooms</h2>
+
 
     <table class="table table-hover">
         <thead>
@@ -10,7 +9,7 @@
             <td>room name</td>
             <td>floor</td>
             <td>device</td>
-            
+
         </tr>
         </thead>
         <tbody>
@@ -27,4 +26,6 @@
         </tr>
         </tbody>
     </table>
+
+    <a class="btn btn-success btn-block" ng-href="#/addRoom"> + Add room</a>
 </div>

@@ -11,7 +11,7 @@ DHT11Sensor DHT_11;
 LIGHTSensor LIGHT;
 //Delay for production:
 //unsigned long sendDelay = 2*60*1000;
-char location[64] = "room_23";
+char location[64] = "default_value";
 //Delay for debugging:
 unsigned long sendDelay = 10000;
 void setup() {
@@ -75,7 +75,6 @@ Serial.println("=================================");
 Serial.print("Celcius: ");
 Serial.println(celcius);
 Serial.println("=================================");
-
 char payload[255];
 snprintf(payload, sizeof(payload),"{\"C2\": %d, \"t\": %f,\"h\": %f,\"l\": %d,\"m\":%s, \"loc\":\"%s\"}",CO2,celcius,humidity,lightValue, motion ? "true": "false", location);
 

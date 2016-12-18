@@ -187,13 +187,13 @@ appControllers.controller("RoomController", ["$http", "$routeParams", "$location
                 }
             );
     };
-    _this.downloadData = function () {
+    _this.downloadData = function() {
 
         var url = "api/sensor/getallsensordata";
         $http
             .get(url)
             .then(
-                function (response) {
+                function(response) {
 
 
                     var filter = $.grep(response.data, function(n, i) {
@@ -206,17 +206,18 @@ appControllers.controller("RoomController", ["$http", "$routeParams", "$location
                     var a = document.createElement("a");
                     a.href = "data: " + _this.downloadData;
                     a.download = 'SensorData.json';
-                    a.innerHTML = 'SensorData.json';
+                    a.innerHTML = 'Download Sensor data';
+                    a.className = 'btn btn-primary btn-lg btn-block';
 
                     var container = $("#downloadContainer");
                     container.append(a);
                 },
-                function (response) {
+                function(response) {
                     console.log("FAIL");
                 }
             );
 
-    }
+    }();
 
     _this.getSensorData = function () {
 
